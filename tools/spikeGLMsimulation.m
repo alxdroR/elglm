@@ -77,11 +77,11 @@ if numcells > 1
     nzero = numcells-1-ncon; % number of non-coupled filters
     
     % spike-history basis coefficients for connections to cell 1
-    coef = [0.01 + (0.2-0.1)*rand(1,ncon),...  %
+    coef = [0.01 + (0.02-0.01)*rand(1,ncon),...  %
         zeros(1,nzero)]; % non-coupled coefficients
     
     IHAll(:,2:numcells,1) =  ggGroundTruth.ihbas2*coef;
-    IHAll(:,2:end,1) = 0.001*IHAll(:,2:end,1)/norm(IHAll(:,2:end,1));
+    IHAll(:,2:end,1) = 0*IHAll(:,2:end,1)/norm(IHAll(:,2:end,1));
     
     
     % all other connections are zero
