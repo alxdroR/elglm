@@ -37,7 +37,7 @@ Installation
    Matlab and OS. 
 3. Add elglm and dependent code to the Matlab path 
 
-USE 
+Usage  
 ======
 Open and read the demo scripts in /demos/ to see simple examples of code usage. 
 LNPdemo - compares the maximum likelihood estimator and maximum expected likelihood estimator 
