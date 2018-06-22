@@ -29,13 +29,13 @@ ggsim1 = makeSimStruct_GLM(nkt,DTsim);  % Create GLM struct with default params
 kt = ggsim1.k;  % Temporal filter
 
 % make a spatial filter;
-nkx = 9;
+nkx = 5;
 xxk = [1:1:nkx]';
 kx = 1./sqrt(2*pi*4).*exp(-(xxk-nkx/2).^2/5);
 Filt = kt*kx'; % Make space-time separable filter
 ggsim1.k = Filt./norm(Filt(:))*3; % Insert into simulation struct
 
-ggsim1.dc = 1;
+ggsim1.dc = 3;
 
 % create spike-history filter using the default
 % basis functions coded in the script for making fitting structures
@@ -77,14 +77,12 @@ if numcells > 1
     nzero = numcells-1-ncon; % number of non-coupled filters
     
     % spike-history basis coefficients for connections to cell 1
-    coef = [0.1 + (1-1.1)*rand(1,ncon),...  %
+    coef = [0.01 + (0.2-0.1)*rand(1,ncon),...  %
         zeros(1,nzero)]; % non-coupled coefficients
     
     IHAll(:,2:numcells,1) =  ggGroundTruth.ihbas2*coef;
-    IHAll(:,2:end,1) = 0.5*IHAll(:,2:end,1)/norm(IHAll(:,2:end,1));
+    IHAll(:,2:end,1) = 0.001*IHAll(:,2:end,1)/norm(IHAll(:,2:end,1));
     
-    % connections to cell 2
-    IHAll(:,1,2) = IHAll(:,2,1); % recipricol connection to cell 1;
     
     % all other connections are zero
     ggsim.ih = IHAll;
@@ -96,7 +94,7 @@ end
 % sample stimulus from a Gaussian distribution
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % set number of samples determined by ratio of number of parameters/number of samples
-pnratio = 0.1;
+pnratio = 0.01;
 p =  (numcells-1)*ggGroundTruth.ihbasprs2.ncols + ggGroundTruth.ihbasprs.ncols + 1 + numel(ggGroundTruth.kt);
 N = round(p/pnratio);
 
