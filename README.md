@@ -1,5 +1,6 @@
 # elglm
 matlab routines for demonstrating the expected log-likelihood 
+
 **Description:** Computes the maximum "expected log-likelihood" for standard regression 
 and linear-non-linear Poisson spiking models. Demonstrates how this estimator can be used 
 to approximate the maximum likelihood estimate.   
