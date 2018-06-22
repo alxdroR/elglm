@@ -6,7 +6,7 @@ to approximate the maximum likelihood estimate.
 
 **Relevant publication :**
 [Ramirez,A.D.; Paninski, L., "Fast inference in generalized linear models via expected 
-log-likelihoods", *Journal of Computational Neuroscience* (36), 2014
+log-likelihoods", *Journal of Computational Neuroscience* (36), 2014]
 
 
 
