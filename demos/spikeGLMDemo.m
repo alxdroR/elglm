@@ -13,7 +13,7 @@ cell2fit=1 ; % cell number we will fit
 %% infer parameters using penalized maximum likelhood estimator (L1 penalty applied to coupling coefficients)
 
 % create a fitting structure to work with functions from Johnathan Pillow's GLMspiketools package
-gg0 = prepareSpikeGLMFit(Stim,tsp,ggsim,cell2fit);
+gg0 = prepareSpikeGLMFit(Stim,tsp,size(ggsim.k,1),ggsim.dt,cell2fit);
 mlet0 = tic;thetaMLE = MLGLMNET(Stim,gg0);mlet = toc(mlet0);
 %% infer parameters using a fast penalized maximum likelhood estimator approximation by keeping stimlulus filter fixed at the maximum penalized expected log-liklihood (MPELE)
 

@@ -1,16 +1,15 @@
-function gg0 = prepareSpikeGLMFit(Stim,tsp,ggsim,cell2fit)
+function gg0 = prepareSpikeGLMFit(Stim,tsp,nkt,dt,cell2fit)
 % prepareSpikeGLMFit  - Pre-compute necessary quantities for fitting spiking model
 
 
 
 % Compute STA and use as initial guess for k
-nkt = size(ggsim.k,1);nkx = size(ggsim.k,2);
 sta0 = simpleSTC(Stim,tsp{cell2fit},nkt);
 sta = reshape(sta0,nkt,[]);
 
 
 %  Initialize params for fitting --------------
-gg0 = makeFittingStruct_GLM_adrMod(sta,ggsim.dt);  % Initialize params for fitting struct
+gg0 = makeFittingStruct_GLM_adrMod(sta,dt);  % Initialize params for fitting struct
 %gg0 = makeFittingStruct_GLM(zeros(nkt,swid),dt);  % Initialize params for fitting struct
 gg0.tspi = 1; % set 1st spike to use for computing likelihood to 1
 

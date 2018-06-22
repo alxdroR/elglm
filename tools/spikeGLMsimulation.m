@@ -44,7 +44,7 @@ ggGroundTruth = makeFittingStruct_GLM_adrMod(zeros(nkt,nkx),DTsim);
 %[~,ihbas,ihbasis] = makeBasis_PostSpike(ggGroundTruth.ihbasprs,DTsim);
 ihGroundTruth = [-10 -5 0 2 -2]';
 ggsim1.ih = ggGroundTruth.ihbas*ihGroundTruth;
-ggsim1.ih = 10.5*ggsim1.ih/norm(ggsim1.ih(:));
+ggsim1.ih = ggsim1.ih/norm(ggsim1.ih(:));
 ggsim1.iht = ggGroundTruth.iht;
 
 
@@ -96,7 +96,7 @@ end
 % sample stimulus from a Gaussian distribution
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % set number of samples determined by ratio of number of parameters/number of samples
-pnratio = 0.01;
+pnratio = 0.1;
 p =  (numcells-1)*ggGroundTruth.ihbasprs2.ncols + ggGroundTruth.ihbasprs.ncols + 1 + numel(ggGroundTruth.kt);
 N = round(p/pnratio);
 
