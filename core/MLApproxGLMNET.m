@@ -31,7 +31,7 @@ gg.kt = pinv(gg.ktbas)*gg.k;
 
 % glmnet parameters -- set penalty for stimulus scalar multiple and spike self-history
 % terms to 0 (no regularization of these terms)
-opts = glmnetSet;opts.penalty_factor = ones(1,size(X,2));opts.penalty_factor(1:1+numel(gg.ih)) = 0;
+opts = glmnetSet;opts.penalty_factor = ones(1,size(X,2));opts.penalty_factor(1:1+numel(gg.ih)) = 0;%opts.maxit=1e3;
 fit = glmnet(X,Y,'binomial',opts);
 
 % extract parameters for the fit GLMNET structure
@@ -40,3 +40,4 @@ THTA = zeros(length(gg.kt(:))-1+pMLEApprox,fit.dim(2));
 for k=1:fit.dim(2)
     THTA(:,k) = [gg.kt(:)*fit.beta(1,k)*-1;fit.a0(k)*-1-log(gg.dt/RefreshRate);fit.beta(2:end,k)*-1];
 end
+

@@ -44,20 +44,13 @@ gg.kbasprs = kbasprs;
 % ======================================================================
 % Set up basis for post-spike kernel
 global RefreshRate
-if 1 
 onems = .001*RefreshRate;% 1 ms
 ihbasprs.ncols = 5;  % Number of basis vectors for post-spike kernel
 ihbasprs.hpeaks = [onems 3];  % Peak location for first and last vectors
 ihbasprs.b = .4;  % How nonlinear to make spacings
 ihbasprs.absref = onems; % absolute refractory period 
 [iht,ihbas,ihbasis] = makeBasis_PostSpike(ihbasprs,DTsim);
-else
-    ihbasprs.ncols = 5;  % Number of basis vectors for post-spike kernel
-    ihbasprs.hpeaks = [0.1 2];  % Peak location for first and last vectors
-    ihbasprs.b = .4;  % How nonlinear to make spacings
-    %ihbasprs.absref = DTsim*10; % absolute refractory period 
-    [iht,ihbas,ihbasis] = makeBasis_PostSpike(ihbasprs,DTsim);
-end
+
 gg.iht = iht;
 % Orthogonalization seems to put the refractory basis fnc at index 4
 %gg.ihbas = [ihbas(:,1:3) ihbas(:,5)];
@@ -68,17 +61,10 @@ gg.ih = zeros(size(gg.ihbas,2),1);
 
 
 % coupling terms
-if 1
-    ihbasprs2.ncols = 4;  % Number of basis vectors for post-spike kernel
-    ihbasprs2.hpeaks = [onems 3];  % Peak location for first and last vectors
-    ihbasprs2.b = .4;  % How nonlinear to make spacings
-    [iht,ihbas,ihbasis] = makeBasis_PostSpike(ihbasprs2,DTsim);
-else
-    ihbasprs2.ncols = 4;  % Number of basis vectors for post-spike kernel
-    ihbasprs2.hpeaks = [0.1 2];  % Peak location for first and last vectors
-    ihbasprs2.b = .4;  % How nonlinear to make spacings
-    [iht,ihbas,ihbasis] = makeBasis_PostSpike(ihbasprs2,DTsim);
-end
+ihbasprs2.ncols = 4;  % Number of basis vectors for post-spike kernel
+ihbasprs2.hpeaks = [onems 3];  % Peak location for first and last vectors
+ihbasprs2.b = .4;  % How nonlinear to make spacings
+[iht,ihbas,ihbasis] = makeBasis_PostSpike(ihbasprs2,DTsim);
 gg.ihbas2 = ihbasis;
 gg.ihbasprs2 = ihbasprs2;
 gg.ih2 = zeros(size(gg.ihbas2,2),1);
